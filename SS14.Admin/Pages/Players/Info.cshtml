@@ -96,7 +96,7 @@
                 <td>@profile.Sex</td>
                 <td>@profile.Gender</td>
                 <td>@profile.Species</td>
-                @{ var favJob = profile.Jobs.SingleOrDefault(e => e.Priority == DbJobPriority.High); }
+                @{ var favJob = profile.Preference.JobPriorities.FirstOrDefault(e => e.Priority == DbJobPriority.High); }
                 <td>@(favJob == null ? "none" : favJob.JobName)</td>
             </tr>
         }
