@@ -80,6 +80,7 @@ public sealed class Info : PageModel
             .Where(t => t.Preference.UserId == userId)
             .OrderBy(t => t.Slot)
             .Include(t => t.Jobs)
+            .Include(t => t.Preference)
             .ToArrayAsync();
 
         Whitelisted = await _dbContext.Whitelist.AnyAsync(p => p.UserId == userId);
