@@ -35,7 +35,7 @@ public sealed class CharactersIndexModel : PageModel
         CurrentFilter = search?.Trim();
         AllRouteData.Add("search", CurrentFilter);
 
-        var profileQuery = _dbContext.Profile.LeftJoin(
+        var profileQuery = _dbContext.Profile.Include(p => p.Preference).LeftJoin(
             _dbContext.Player,
             p => p.Preference.UserId, pl => pl.UserId,
             (p, pl) => new CharacterPlayerData { Profile = p, Player = pl }
